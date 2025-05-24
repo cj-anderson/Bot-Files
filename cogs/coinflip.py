@@ -1,6 +1,6 @@
 import random
 from discord.ext import commands
-from points import get_points, set_points  # ✅ Use shared point logic
+from .points import get_points, set_points  # ✅ Use shared point logic
 
 class CoinFlip(commands.Cog):
     def __init__(self, bot):
@@ -43,11 +43,7 @@ class CoinFlip(commands.Cog):
             set_points(user_id, new_points)
             await ctx.send(f"😢 You lost! The coin was **{result}**. You lost {wager} points and now have {new_points} points.")
 
-    @commands.command(name='points')
-    async def points(self, ctx):
-        user_id = ctx.author.id
-        current_points = get_points(user_id)
-        await ctx.send(f"💰 You currently have {current_points} points.")
+
 
     @commands.command(name='slots')
     async def slots(self, ctx, wager: int):
